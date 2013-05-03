@@ -46,7 +46,7 @@ a.readlink:hover { border-top: 10px solid #00bbf1; border-right: 15px solid #00b
 
 .blogintro { color: #666; }
 
-h1 { color: #333; text-align: center; font-size: 36px; margin-top:20px;margin-bottom:10px;}
+h1 { color: #333; text-align: center; font-size: 36px; margin-top: 20px; margin-bottom: 10px; }
 
 .bluedivider { display: block; float: left; margin: 0px auto; padding: 0px; width: 100%; height: 3px; border: 0; background: url('data:image/jpg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAZAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQICAgICAgICAgICAwMDAwMDAwMDAwEBAQEBAQECAQECAgIBAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMD/8AAEQgAAwKUAwERAAIRAQMRAf/EAGMAAQEBAAAAAAAAAAAAAAAAAAAJCgEBAQEAAAAAAAAAAAAAAAAAAAgJEAADAQAABQQDAAAAAAAAAAAAJWanEhMUFRaBQmJHZygJEQEAAgMBAAAAAAAAAAAAAAAAhUbExQgJ/9oADAMBAAIRAxEAPwDeEittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwCK20cAittHAIrbRwIh/2S6D9cui739vc3vHkf4v4Om8g9ePk/Hi9pdXFdljs5jv6x0Gc06IZdTHgAAAAAAAAAAAAAAAAAAAAAA//Z') /*../images/divider-660.jpg*/ 50% 0 no-repeat #fff; *background: url(../images/divider-660.jpg) 50% 0 no-repeat; /* For IE 6 and 7 */ }
 
@@ -65,13 +65,13 @@ h1 { color: #333; text-align: center; font-size: 36px; margin-top:20px;margin-bo
     .columnthird p { margin-right: 0px; margin-left: 0px; }
 
 .postmetadata { color: #ccc; font-size: 12px; }
-#blogposttheader {padding: 0px 30px 0px 30px; color: #aaaaaa; font-size: 16px; line-height: 26px; }
+#blogposttheader { padding: 0px 30px 0px 30px; color: #aaaaaa; font-size: 16px; line-height: 26px; }
 .blogpostmeta { float: left; padding: 0px 0px 0px 30px; width: 630px; height: auto; }
 .blogpostitem { float: left; padding: 0px 30px 20px 30px; width: 600px; height: auto; }
 .backlink { border-top: 3px solid #00bbf1; border-right: 15px solid #00bbf1; border-bottom: 4px solid #00bbf1; border-left: 15px solid #00bbf1; background: #00bbf1; color: #ffffff; text-transform: uppercase; font-style: normal; }
 
 a.backlink:hover { border-top: 3px solid #00bbf1; border-right: 15px solid #00bbf1; border-bottom: 4px solid #00bbf1; border-left: 15px solid #00bbf1; background: #00bbf1; color: #ffffff; text-transform: uppercase; font-style: normal; }
-figure { max-width:600px;width:auto;height:auto;margin:15px 0px;padding:0px;float:left;overflow:hidden;display:block; }
-figure > img { max-width:600px;width:auto;height:auto;margin:0px;padding:0px;float:left;overflow:hidden;display:block; }
-figcaption { color: #ccc; font-size: 12px;}
-h3 { padding:0px;margin:0px; }
+figure { max-width: 600px; width: auto; height: auto; margin: 15px 0px; padding: 0px; float: left; overflow: hidden; display: block; }
+    figure > img { max-width: 600px; width: auto; height: auto; margin: 0px; padding: 0px; float: left; overflow: hidden; display: block; }
+figcaption { color: #ccc; font-size: 12px; }
+h3 { padding: 0px; margin: 0px; }

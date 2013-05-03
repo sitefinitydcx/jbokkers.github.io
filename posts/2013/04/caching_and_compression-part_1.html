@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>jbokkers.github.io - Caching and Compression for Sitefinity v5 (1)</title>
+    <title>Caching and Compression for Sitefinity v5 (1) | Jochem Bökkers Blog</title>
     <link href="/stylesheets/styles.css" rel="stylesheet" />
 </head>
 <body>
@@ -64,35 +64,37 @@
                     We do this by telling IIS how to handle individual mime-types by simply iterating over the individual mime-types.
                 </p>
                 <br />
-                    <code>
-                    <httpCompression minFileSizeForComp="1024">
+                <code>
+                    <httpcompression minfilesizeforcomp="1024">
                       <staticTypes>
                         <add mimeType="message/*" enabled="true" />
                         <add mimeType="text/*" enabled="true" />
                         <add mimeType="application/javascript" enabled="true" />
                         ...
                       </staticTypes>
-                    </httpCompression>
-                    </code>
+                    </httpcompression>
+                </code>
                 <br />
                 <p>
                     <h3>And finally, iterate static content mime-types to ensure they're properly served.</h3>
                     First setup client-caching logic to use 31 days. Then for individual mime-types we remove the mapping and re-assign it. At the same time by adding the charset=UTF-8 we avoid any unicode/ascii character encoding conflicts.
                 </p>
                 <br />
-                    <code>
-                        <staticContent>
+                <code>
+                    <staticcontent>
                           <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="31.00:00:00" />
                           <remove fileExtension=".css" />
                           <mimeMap fileExtension=".css" mimeType="text/css; charset=UTF-8" />
                           <remove fileExtension=".js" />
                           <mimeMap fileExtension=".js" mimeType="application/javascript; charset=UTF-8" />
                           ...
-                        </staticContent>
-                    </code>
+                        </staticcontent>
+                </code>
                 <br />
                 <p>
-                    Encapsulate these snippets in a <code><system.webserver></code> tag at the bottom of your web.config, recycle and navigate to your project.
+                    Encapsulate these snippets in a <code>
+                        <system.webserver>
+                    </code>tag at the bottom of your web.config, recycle and navigate to your project.
                 Now if you open the network tab on Chrome or Firefox and you will see similar results as below.
                 </p>
                 <figure>
@@ -173,6 +175,18 @@ All of our static content types get returned with a 304 Not modified code so the
             po.src = 'https://apis.google.com/js/plusone.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
         })();
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-16814216-2', 'github.io');
+        ga('send', 'pageview');
+
     </script>
 </body>
 </html>
