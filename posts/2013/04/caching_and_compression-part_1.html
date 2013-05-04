@@ -1,27 +1,34 @@
 ﻿<!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="A series of blogposts, snippets and insights related to web development, Sitefinity CMS and optimization tricks and treats by Jochem Bökkers">
+    <meta name="keywords" content="sitefinity, iis, caching, compression, performance, web.config, transformations">
     <title>Caching and Compression for Sitefinity v5 (1) | Jochem Bökkers Blog</title>
     <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
 </head>
 <body>
     <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
-        <header id="headerwrapper">
-            <div id="headerlogo">
-                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;">
-                    <img src="/images/logo.png" alt="logo"></img>
+        <div id="headerwrapper" role="heading">
+            <div id="headerlogo" role="banner">
+                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
+                    <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
+
             </div>
-        </header>
-        <article id="contentwrapper">
-            <header id="blogposttheader">
+            <hgroup id="blogposttheader" role="contentinfo">
                 <h2 itemprop="name">Caching and Compression for Sitefinity v5 (1)</h2>
-            </header>
+            </hgroup>
+        </div>
+        <article id="contentwrapper">
             <section class="blogpostitem" itemprop="articleBody">
                 <!-- blogpost start -->
                 <p>
@@ -32,7 +39,7 @@
                     Some caching might take place on the server, or by the browser but ideally you want to end up with a picture that looks somewhat like this:
                 </p>
                 <figure>
-                    <img src="cache-optimized-yslow-graph-sitefinity.png" alt="Cache optimized Yslow Sitefinity result"></img>
+                    <img src="cache-optimized-yslow-graph-sitefinity.png" alt="Cache optimized Yslow Sitefinity result" width="600px" />
                     <figcaption>Fig: Optimized Sitefinity website loading</figcaption>
                 </figure>
                 <p>
@@ -58,14 +65,7 @@
                 </p>
                 <br />
                 <code>
-                    <httpcompression minfilesizeforcomp="1024">
-                      <staticTypes>
-                        <add mimeType="message/*" enabled="true" />
-                        <add mimeType="text/*" enabled="true" />
-                        <add mimeType="application/javascript" enabled="true" />
-                        ...
-                      </staticTypes>
-                    </httpcompression>
+                    <script src="https://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
                 </code>
                 <br />
                 <p>
@@ -74,24 +74,15 @@
                 </p>
                 <br />
                 <code>
-                    <staticcontent>
-                          <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="31.00:00:00" />
-                          <remove fileExtension=".css" />
-                          <mimeMap fileExtension=".css" mimeType="text/css; charset=UTF-8" />
-                          <remove fileExtension=".js" />
-                          <mimeMap fileExtension=".js" mimeType="application/javascript; charset=UTF-8" />
-                          ...
-                        </staticcontent>
+                    <script src="https://gist.github.com/jbokkers/108995d43ca23f099d83.js"></script>
                 </code>
                 <br />
                 <p>
-                    Encapsulate these snippets in a <code>
-                        <system.webserver>
-                    </code>tag at the bottom of your web.config, recycle and navigate to your project.
+                    Encapsulate these snippets in a <code>&lt;system.webserver&gt;</code>tag at the bottom of your web.config, recycle and navigate to your project.
                 Now if you open the network tab on Chrome or Firefox and you will see similar results as below.
                 </p>
                 <figure>
-                    <img src="cache-optimized-file-loading-sitefinity.png" alt="Network loading Sitefinity result"></img>
+                    <img src="cache-optimized-file-loading-sitefinity.png" alt="Network loading Sitefinity result" width="600px" />
                     <figcaption>Fig: Chrome Network loading panel</figcaption>
                 </figure>
                 <br />
@@ -126,7 +117,6 @@ All of our static content types get returned with a 304 Not modified code so the
                 </p>
             </aside>
             <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <!-- 1st column -->
                 <div class="columnthird left">
                     <p>
                         <br />
@@ -135,25 +125,23 @@ All of our static content types get returned with a 304 Not modified code so the
                         All information is without warranty.
                     </p>
                 </div>
-                <!-- 2nd column -->
                 <div class="columnthird left">
                     <p>
-                        <span itemprop="name">Jochem Bökkers</span>
+                        <h4 itemprop="name">Jochem Bökkers</h4>
                         <br />
                         <br />
                         <span itemprop="description">Indepedent software consultant focusing on Telerik's Sitefinity CMS</span><br />
                     </p>
                 </div>
-                <!-- 3rd column -->
                 <div class="columnthird left">
                     <a itemprop="email" href="jochem.bokkers@gmail.com" style="color: #ffffff;" target="_blank">
-                        <img itemprop="image" class="img-285" src="/images/jbokkers_profile.png" alt="Send an email" title="Send an email" style="border: 0; width: 64px; height: 64px;"></img>
+                        <img itemprop="image" src="/images/jbokkers_profile.png" alt="Get in touch" title="Get in touch" width="64px" height="64px" role="img" />
                     </a>
                     <a itemprop="award" href="//www.telerik.com/community/client-profile.aspx?cId=162662" style="color: #ffffff;" rel="me" target="_blank">
-                        <img class="img-285" src="/images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" style="border: 0; width: 64px; height: 64px;"></img>
+                        <img src="/images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" width="64px" height="64px" role="img" />
                     </a>
                     <a itemprop="url" href="//plus.google.com/108089516959103859088" rel="author" style="text-decoration: none;" target="_blank">
-                        <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" style="border: 0; width: 64px; height: 64px;" />
+                        <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" width="64px" height="64px" role="img" />
                     </a>
                 </div>
 

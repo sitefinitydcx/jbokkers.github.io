@@ -1,47 +1,46 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" lang="en">
 <!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="A series of blogposts, snippets and insights related to web development, Sitefinity CMS and optimization tricks and treats by Jochem Bökkers">
+    <meta name="keywords" content="sitefinity, html5, cms, optimization, performance, telerik, jochem bökkers, jbokkers">
     <title>It's time for an update | Jochem Bökkers Blog</title>
     <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
 </head>
 <body>
     <div id="wrapper" itemscope itemtype="http://schema.org/Blog">
-        <header id="headerwrapper">
-            <div id="headerlogo">
-                <img src="images/logo.png" alt="logo"></img>
+        <header id="headerwrapper" role="heading">
+            <div id="headerlogo" role="banner">
+                <img  itemprop="image" src="/images/logo.jpg" alt="logo" role="img" width="400px" height="280px" />
             </div>
-        </header>
-        <section id="contentwrapper">
-            <section id="contentheader">
-                <h1>It's time for an update</h1>
-                <p class="blogintro" itemprop="about">
-                    Here you'll find a series of blogposts, snippets and insights, mostly related to web development, Sitefinity CMS and optimization tricks.
-                </p>
-            </section>
+             <hgroup id="contentheader" role="contentinfo">
+                <h1 itemprop="name">It's time for an update</h1>
+                <h4 class="blogintro" itemprop="description">
+                    Here you'll find a series of blogposts, snippets and insights mostly related to web development, Sitefinity CMS and optimization tricks.
+                </h4>
+            </hgroup>
+       </header>
+        <div id="contentwrapper" role="contentinfo">
             <hr class="bluedivider" />
             <!-- blogpost start -->
-            <article class="bloglistitem" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                <!-- left column -->
+            <article class="bloglistitem" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" role="article">
                 <div class="columnimage left">
                     <a href="http://jbokkers.github.io/posts/2013/04/caching_and_compression-part_2.html" style="color: #ffffff;">
-                        <img class="img-285" src="images/caching_and_compression-part_2.png" alt="caching and compression" border="0" itemprop="image"></img>
+                        <img class="img-285" src="images/20130405-caching_and_compression-part_2.png" alt="caching and compression" border="0" itemprop="image" height="200px" width="200px" role="complementary"></img>
                     </a>
                 </div>
-                <!-- right column -->
                 <div class="columntext right">
-                    <p class="bloglisttitle" itemprop="name">
+                    <h2 class="bloglisttitle" itemprop="name">
                         caching and compression (2)
-                    </p>
+                    </h2>
                     <p itemprop="headline">
                         Naturally you don't want caching to get in the way while developing and constantly having to resort to app-recycles and clearing of the browser cache...
                     </p>
@@ -57,12 +56,11 @@
             <!-- blogpost end -->
             <hr class="bluedivider" />
             <!-- blogpost start -->
-            <article class="bloglistitem" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                <!-- left column -->
+            <article class="bloglistitem" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" role="article">
                 <div class="columntext left">
-                    <p class="bloglisttitle" itemprop="name">
+                    <h2 class="bloglisttitle" itemprop="name">
                         caching and compression (1)
-                    </p>
+                    </h2>
                     <p itemprop="headline">
                         In a perfect world you aim for everything to be cached, except the actual page content to minimize the download time and speed up a visitors user experience....
                     </p>
@@ -74,16 +72,15 @@
                         Published on&nbsp;<span itemprop="datePublished">2013-04-04</span>
                     </p>
                 </div>
-                <!-- right column -->
                 <div class="columnimage right">
                     <a href="http://jbokkers.github.io/posts/2013/04/caching_and_compression-part_1.html" style="color: #ffffff;">
-                        <img class="img-285" src="images/caching_and_compression-part_1.png" alt="caching and compression" border="0" itemprop="image"></img>
+                        <img class="img-285" src="images/20130404-caching_and_compression-part_1.png" alt="caching and compression" border="0" itemprop="image" role="complementary" width="200px" height="200px"></img>
                     </a>
                 </div>
             </article>
             <!-- blogpost end -->
             <hr class="bluedivider" />
-        </section>
+        </div>
         <footer id="footerwrapper">
             <aside class="calltoaction">
                 <!--
@@ -98,7 +95,6 @@
             -->
             </aside>
             <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <!-- 1st column -->
                 <div class="columnthird left">
                     <p>
                         <br />
@@ -107,25 +103,23 @@
                         All information is without warranty.
                     </p>
                 </div>
-                <!-- 2nd column -->
                 <div class="columnthird left">
                     <p>
-                        <span itemprop="name">Jochem Bökkers</span>
+                        <h4 itemprop="name">Jochem Bökkers</h4>
                         <br />
                         <br />
                         <span itemprop="description">Indepedent software consultant focusing on Telerik's Sitefinity CMS</span><br />
                     </p>
                 </div>
-                <!-- 3rd column -->
                 <div class="columnthird left">
                     <a itemprop="email" href="jochem.bokkers@gmail.com" style="color: #ffffff;" target="_blank">
-                        <img itemprop="image" class="img-285" src="images/jbokkers_profile.png" alt="Send an email" title="Send an email" style="border: 0; width: 64px; height: 64px;"></img>
+                        <img itemprop="image" src="/images/jbokkers_profile.png" alt="Get in touch" title="Get in touch" width="64px" height="64px" role="img" />
                     </a>
                     <a itemprop="award" href="//www.telerik.com/community/client-profile.aspx?cId=162662" style="color: #ffffff;" rel="me" target="_blank">
-                        <img class="img-285" src="images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" style="border: 0; width: 64px; height: 64px;"></img>
+                        <img src="/images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" width="64px" height="64px" role="img" />
                     </a>
                     <a itemprop="url" href="//plus.google.com/108089516959103859088" rel="author" style="text-decoration: none;" target="_blank">
-                        <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" style="border: 0; width: 64px; height: 64px;" />
+                        <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" width="64px" height="64px" role="img" />
                     </a>
                 </div>
 
@@ -133,17 +127,15 @@
         </footer>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" async="async" defer="defer"></script>
-    <script>
+    <script type="text/javascript" defer="defer">
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date(); a = s.createElement(o),
             m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
         ga('create', 'UA-16814216-2', 'github.io');
         ga('send', 'pageview');
-
     </script>
 </body>
 </html>
