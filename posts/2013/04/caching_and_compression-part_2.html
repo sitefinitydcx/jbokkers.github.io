@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
@@ -11,112 +11,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A series of blogposts, snippets and insights related to web development, Sitefinity CMS and optimization tricks and treats by Jochem Bökkers">
     <meta name="keywords" content="sitefinity, iis, caching, compression, performance, web.config, transformations">
-    <title>Caching and Compression for Sitefinity v5 (1) | Jochem Bökkers Blog</title>
+    <title>Caching and Compression for Sitefinity v5 (2) | Jochem Bökkers Blog</title>
     <link href="/stylesheets/styles.css" rel="stylesheet" />
     <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
 </head>
 <body>
-
     <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
-        <header id="headerwrapper">
-            <div id="headerlogo">
-                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;">
-                    <img src="/images/logo.jpg" alt="logo"></img>
+        <div id="headerwrapper" role="heading">
+            <div id="headerlogo" role="banner">
+                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
+                    <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
+
             </div>
-        </header>
+            <hgroup id="blogposttheader" role="contentinfo">
+                <h2 itemprop="name">Caching and Compression for Sitefinity v5 (2)</h2>
+            </hgroup>
+        </div>
         <article id="contentwrapper">
-            <header id="blogposttheader">
-                <h2 itemprop="name">Caching and Compression for Sitefinity v5 (1)</h2>
-            </header>
             <section class="blogpostitem" itemprop="articleBody">
                 <!-- blogpost start -->
                 <p>
-                    In a perfect world you aim for everything to be cached, except the actual page content to minimize the download time and speed up a visitors user experience.
+                    In yesterday's <a href="caching_and_compression-part_1.html" title="Caching and Compression with Sitefinity v5 (part 1)" rel="prev">post</a> we looked at different web.config setting to help optimize a Sitefinity website in terms of caching and compression of static content. Naturally you don't want caching to get in the way while developing and constantly having to resort to app-recycles and clearing of the browser cache.
                 </p>
                 <br />
                 <p>
-                    Some caching might take place on the server, or by the browser but ideally you want to end up with a picture that looks somewhat like this:
+                    <h3>Enter web.config transformations</h3>
+                    A perhaps not-very-well-known feature yet it has been available for a few years.
+                </p>
+                <br />
+                <p>
+                    Simply open your project in Visual Studio 2010 or 2012, right-click your web.config and click "Add Config Transforms". 
+                    Nested under your web.config, you'll find 3 new files called web.Debug.config, web.Release Pro.config and web.Release.config.
+                </p>
+                <br />
+                <p>
+                    Each of those files correspond with one of the Visual Studio solutions configurations.
                 </p>
                 <figure>
-                    <img src="cache-optimized-yslow-graph-sitefinity.png" alt="Cache optimized Yslow Sitefinity result"></img>
-                    <figcaption>Fig: Optimized Sitefinity website loading</figcaption>
+                    <img src="visualstudio-web-config-transformations.png" alt="VisualStudio Solution Explorer with web.config transformations" width="600px" />
+                    <figcaption>Fig: VisualStudio Solution Explorer with web.config transformations</figcaption>
                 </figure>
                 <p>
-                    And while you can control the caching of the page content itself from within Sitefinity (page>properties) there is no built in method to control static content like javascript, css or images.
+                    This will work with any ASP.NET application out-of-the-box, but instead of the usual 2 (<i>debug & release</i>), Sitefinity comes with 3 configurations and we'll take advantage of that extra one by using it for our caching.
                 </p>
                 <br />
                 <p>
-                    In order to achieve this optimum setup, we need to turn to our web.config and define some logic.
+                    Anything you'd like to be always present you setup in the web.config. Anything you'd like to see changed, you simply put in the corresponding config file. On each build, Visual Studio will insert/remove/merge the transformation rules setup in the corresponding web.xxx.config for you.
+                </p>
+                <p>
+                    <ul>
+                        <li>Would you like Elmah but just when you're debugging?<br />
+                            <i>Simply add 5 lines of code to the web.Debug.config.</i>
+                        </li>
+                        <li>Do you want different url-rewrite rules for your testing & debug environment?<br />
+                            <i>Simply add the changes to each of the .config files.</i>
+                        </li>
+                        <li>Only enable caching & compression when you're in production mode?<br />
+                            <i>That's right - add the snippets from yesterdays post to your web.Release Pro.config.</i>
+                        </li>
+                    </ul>
+                    Well, it's almost that easy... Microsoft wouldn't be Microsoft if they hadn't made things a bit more difficult, and thus they introduced the xdt prefix.
                 </p>
                 <br />
                 <p>
-                    <h3>First up is setting up a caching profile.</h3>
-                    In it we define various common extensions and tell IIS how to handle these files, in this cache we simply tell IIS to cache them on the client until they've changed.                
+                    <h3>XDT stands for XML-Document-Transform</h3>
+                    in laymen terms, is nothing else than a namespace that defines two attributes: Locator and Transform. The first defines where and the second describes what to do like for instance InsertBefore, Replace and Remove.
                 </p>
                 <br />
+                <p>
+                    If you open the web.Release.config file in VisualStudio, you'll see the most useful one already inserted for you
+                </p>
                 <code>
-                    <script src="https://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
+                    <script src="https://gist.github.com/jbokkers/32532fa36d77d7985c0b.js"></script>
                 </code>
-                <br />
                 <p>
-                    <h3>The second step is to define which content gets compressed.</h3>
-                    We do this by telling IIS how to handle individual mime-types by simply iterating over the individual mime-types.
+                    All this does is remove the compilation tag debug of the web.config. Simple, elegant and no more excuses to accidentally run production sites in debug-mode. To apply this to our caching & compression snippets from yesterday, we simply need to enhance them with a bit of markup.
                 </p>
                 <br />
+                <p>
+                    To achieve this:
+                </p>
                 <code>
-                    <httpcompression minfilesizeforcomp="1024">
-                      <staticTypes>
-                        <add mimeType="message/*" enabled="true" />
-                        <add mimeType="text/*" enabled="true" />
-                        <add mimeType="application/javascript" enabled="true" />
-                        ...
-                      </staticTypes>
-                    </httpcompression>
+                    <script src="https://gist.github.com/jbokkers/80813885f640c425087a.js"></script>
                 </code>
-                <br />
                 <p>
-                    <h3>And finally, iterate static content mime-types to ensure they're properly served.</h3>
-                    First setup client-caching logic to use 31 days. Then for individual mime-types we remove the mapping and re-assign it. At the same time by adding the charset=UTF-8 we avoid any unicode/ascii character encoding conflicts.
+                    Our web.Release Pro.config will contain this:
                 </p>
-                <br />
                 <code>
-                    <staticcontent>
-                          <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="31.00:00:00" />
-                          <remove fileExtension=".css" />
-                          <mimeMap fileExtension=".css" mimeType="text/css; charset=UTF-8" />
-                          <remove fileExtension=".js" />
-                          <mimeMap fileExtension=".js" mimeType="application/javascript; charset=UTF-8" />
-                          ...
-                        </staticcontent>
+                    <script src="https://gist.github.com/jbokkers/8d10dc19471b2f13d3a9.js"></script>
                 </code>
-                <br />
                 <p>
-                    Encapsulate these snippets in a <code>
-                        <system.webserver>
-                    </code>tag at the bottom of your web.config, recycle and navigate to your project.
-                Now if you open the network tab on Chrome or Firefox and you will see similar results as below.
-                </p>
-                <figure>
-                    <img src="cache-optimized-file-loading-sitefinity.png" alt="Network loading Sitefinity result"></img>
-                    <figcaption>Fig: Chrome Network loading panel</figcaption>
-                </figure>
-                <br />
-                <p>
-                    Our content page, was not cached so it is fetched from the server each time. 
-All of our static content types get returned with a 304 Not modified code so the browser won't download them again. And even the final JavaScript file, which gets loaded asynchronously gets cached in the browser.
+                    The <code>&lt;system.webServer&gt;</code> surrounding our <code>&lt;caching&gt;</code> helps the transformations locate our tag and ensures it goes into the correct section.
+                    By adding the <code>xdt:Transform=&quot;Insert&quot;</code> to the <code>&lt;caching&gt;</code> we tell VisualStudio to insert it into our newly built web.config
+                    And that&#39;s all there&#39;s to it.
                 </p>
                 <br />
                 <p>
-                    Tomorrow we'll take a look at how to configure these settings with web.config transforms to easily enable/disable caching and compression during the development stage.
+                    A fully working Sitefinity 5.4 compatible web.Release.Config can be found <a href="//github.com/FalafelSoftwareInc/Sitefinity" target="_blank" title="A Sitefinity 5.4 optimized web.config transform that enables caching and compression for static-content." rel="external">here</a> on GitHub.
+                    To read more about web.config transformations take a look at <a href="//msdn.microsoft.com/en-us/library/dd465326.aspx" target="_blank" title="MSDN Documentation: Web.config Transformation Syntax" rel="bookmark">this page</a> on MSDN or watch the Scott Hanselman Mix2010 <a href="//channel9.msdn.com/Events/MIX/MIX10/FT14" target="_blank" title="Web Deployment Made Awesome" rel="external">demo</a>.
                 </p>
-                <br />
                 <!-- blogpost end -->
             </section>
             <hr class="bluedivider" />
             <footer class="blogpostmeta">
                 <p class="postmetadata left">
-                    Published on&nbsp;<span itemprop="datePublished">2013-04-04</span>
+                    Published on&nbsp;<span itemprop="datePublished">2013-04-05</span>
                 </p>
                 <p class="postmetadata right">
                     <a itemprop="url" href="//jbokkers.github.io/index.html" class="backlink"><< &nbsp;back to overview</a>
@@ -133,7 +133,6 @@ All of our static content types get returned with a 304 Not modified code so the
                 </p>
             </aside>
             <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <!-- 1st column -->
                 <div class="columnthird left">
                     <p>
                         <br />
@@ -142,25 +141,23 @@ All of our static content types get returned with a 304 Not modified code so the
                         All information is without warranty.
                     </p>
                 </div>
-                <!-- 2nd column -->
                 <div class="columnthird left">
                     <p>
-                        <span itemprop="name">Jochem Bökkers</span>
+                        <h4 itemprop="name">Jochem Bökkers</h4>
                         <br />
                         <br />
                         <span itemprop="description">Indepedent software consultant focusing on Telerik's Sitefinity CMS</span><br />
                     </p>
                 </div>
-                <!-- 3rd column -->
                 <div class="columnthird left">
-                    <a itemprop="email" href="jochem.bokkers@gmail.com" style="color: #ffffff;" target="_blank">
-                        <img itemprop="image" class="img-285" src="/images/jbokkers_profile.png" alt="Send an email" title="Send an email" style="border: 0; width: 64px; height: 64px;"></img>
+                    <a itemprop="email" href="mailto:jochem.bokkers@gmail.com" style="color: #ffffff;" target="_blank">
+                        <img itemprop="image" src="/images/jbokkers_profile.png" alt="Get in touch" title="Get in touch" width="64px" height="64px" role="img" />
                     </a>
                     <a itemprop="award" href="//www.telerik.com/community/client-profile.aspx?cId=162662" style="color: #ffffff;" rel="me" target="_blank">
-                        <img class="img-285" src="/images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" style="border: 0; width: 64px; height: 64px;"></img>
+                        <img src="/images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" width="64px" height="64px" role="img" />
                     </a>
                     <a itemprop="url" href="//plus.google.com/108089516959103859088" rel="author" style="text-decoration: none;" target="_blank">
-                        <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" style="border: 0; width: 64px; height: 64px;" />
+                        <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" width="64px" height="64px" role="img" />
                     </a>
                 </div>
 

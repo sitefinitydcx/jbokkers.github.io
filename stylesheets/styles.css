@@ -45,6 +45,7 @@ h4 { display: block; float: left; margin-top: 10px; margin-bottom: 40px; width: 
 .blogpostmeta { float: left; padding: 0px 0px 0px 30px; width: 630px; height: auto; }
 .blogpostitem { float: left; padding: 0px 30px 20px 30px; width: 600px; height: auto; }
     .blogpostitem > p { text-align: justify; }
-figure { display: block; float: left; overflow: hidden; margin: 15px 0px; padding: 0px; max-width: 600px; width: auto; height: auto; }
-    figure > img { display: block; float: left; overflow: hidden; margin: 0px; padding: 0px; max-width: 600px; width: auto; height: auto; }
+    .blogpostitem a { font-style: normal; }
+figure { display: block; float: left; overflow: hidden; margin: 15px 0px; padding: 0px; max-width: 600px; width: 100%; height: auto; }
+    figure > img { display: block; float: left; overflow: hidden; margin: 0px; padding: 0px; max-width: 600px; width: 100%; height: auto; }
 figcaption { color: #666; font-size: 10px; }
