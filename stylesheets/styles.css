@@ -24,7 +24,8 @@ body, .ReadMsgBody, .ExternalClass { background-color: #f8f8ff; } #contentwrappe
     h2 { font-size: 13px; }
     h3 { font-size: 14px; }
     .outtro { padding: 0px 30px 30px 30px; }
-    p.postmetadata.right { visibility: hidden; }
+    p.postmetadata.right { display:none; }
+    p.postmetadata.left { text-align:center; width:319px; }
     #wrapper { margin: 10px auto 0px auto; }
     figure { margin-top: 15px; }
     .columnthird p { margin-right: 0px; margin-left: 0px; }
@@ -38,7 +39,7 @@ body, .ReadMsgBody, .ExternalClass { background-color: #f8f8ff; } #contentwrappe
     .columntext { padding: 25px 0px; }
     .outtro { padding: 10px; }
     #blogposttheader { padding: 30px 10px 15px 10px; }
-    .blogpostmeta { padding: 0px 0px 0px 30px; }
+    .blogpostmeta { padding: 0px 0px 0px 10px; }
 }
 
 @media screen and (min-width: 321px) and (max-width: 640px) {
@@ -53,7 +54,8 @@ body, .ReadMsgBody, .ExternalClass { background-color: #f8f8ff; } #contentwrappe
     h3 { font-size: 14px; }
     .outtro { padding: 0px 30px 30px 30px; }
     .blogpostmeta { width: 430px; }
-    p.postmetadata.right { visibility: hidden; }
+    p.postmetadata.right { display:none; }
+    p.postmetadata.left { text-align:center; width:400px; }
 }
 
 @media print {
