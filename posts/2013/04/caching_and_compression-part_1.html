@@ -22,13 +22,23 @@
                 <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
                     <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
-
             </div>
             <hgroup id="blogposttheader" role="contentinfo">
                 <h2 itemprop="name">Caching and Compression for Sitefinity v5 (1)</h2>
             </hgroup>
         </div>
         <article id="contentwrapper">
+             <hr class="bluedivider" />
+           <header class="blogpostmeta">
+               <p class="postmetadata left">
+                    Published on&nbsp;<span itemprop="datePublished">2013-04-04</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
+
+                </p>
+                <p class="postmetadata right">
+                    <a href="//jbokkers.github.io/index.html" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                </p>
+            </header>
+            <hr class="bluedivider" />
             <section class="blogpostitem" itemprop="articleBody">
                 <!-- blogpost start -->
                 <p>
@@ -55,30 +65,24 @@
                     In it we define various common extensions and tell IIS how to handle these files, in this cache we simply tell IIS to cache them on the client until they've changed.                
                 </p>
                 <br />
-                <code>
                     <script src="https://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
-                </code>
                 <br />
                 <p>
                     <h3>The second step is to define which content gets compressed.</h3>
                     We do this by telling IIS how to handle individual mime-types by simply iterating over the individual mime-types.
                 </p>
                 <br />
-                <code>
                     <script src="https://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
-                </code>
                 <br />
                 <p>
                     <h3>And finally, iterate static content mime-types to ensure they're properly served.</h3>
                     First setup client-caching logic to use 31 days. Then for individual mime-types we remove the mapping and re-assign it. At the same time by adding the charset=UTF-8 we avoid any unicode/ascii character encoding conflicts.
                 </p>
                 <br />
-                <code>
                     <script src="https://gist.github.com/jbokkers/108995d43ca23f099d83.js"></script>
-                </code>
                 <br />
                 <p>
-                    Encapsulate these snippets in a <code>&lt;system.webserver&gt;</code>tag at the bottom of your web.config, recycle and navigate to your project.
+                    Encapsulate these snippets in a <code>&lt;system.webserver&gt;</code> tag at the bottom of your web.config, recycle and navigate to your project.
                 Now if you open the network tab on Chrome or Firefox and you will see similar results as below.
                 </p>
                 <figure>
@@ -92,7 +96,7 @@ All of our static content types get returned with a 304 Not modified code so the
                 </p>
                 <br />
                 <p>
-                    Tomorrow we'll take a look at how to configure these settings with web.config transforms to easily enable/disable caching and compression during the development stage.
+                    <a href="caching_and_compression-part_2.html" title="Caching and Compression with Sitefinity v5 (part 2)" rel="next">Tomorrow</a> we'll take a look at how to configure these settings with web.config transforms to easily enable/disable caching and compression during the development stage.
                 </p>
                 <br />
                 <!-- blogpost end -->
@@ -100,9 +104,9 @@ All of our static content types get returned with a 304 Not modified code so the
             <hr class="bluedivider" />
             <footer class="blogpostmeta">
                 <p class="postmetadata left">
-                    Published on&nbsp;<span itemprop="datePublished">2013-04-04</span>
+                    Keywords:&nbsp;<span itemprop="keywords">Sitefinity, caching, optimizations</span>
                 </p>
-                <p class="postmetadata right">
+               <p class="postmetadata right">
                     <a itemprop="url" href="//jbokkers.github.io/index.html" class="backlink"><< &nbsp;back to overview</a>
                 </p>
             </footer>
@@ -140,7 +144,7 @@ All of our static content types get returned with a 304 Not modified code so the
                     <a itemprop="award" href="//www.telerik.com/community/client-profile.aspx?cId=162662" style="color: #ffffff;" rel="me" target="_blank">
                         <img src="/images/telerik_mvp.png" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" width="64px" height="64px" role="img" />
                     </a>
-                    <a itemprop="url" href="//plus.google.com/108089516959103859088" rel="author" style="text-decoration: none;" target="_blank">
+                    <a itemprop="url" href="//plus.google.com/11307041420867521076" rel="publisher" style="text-decoration: none;" target="_blank">
                         <img src="//ssl.gstatic.com/images/icons/gplus-64.png" alt="Google+" title="Find me on Google+" width="64px" height="64px" role="img" />
                     </a>
                 </div>

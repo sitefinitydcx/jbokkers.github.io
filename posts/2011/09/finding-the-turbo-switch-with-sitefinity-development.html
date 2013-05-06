@@ -9,9 +9,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use web.config transformations to optimize different development scenario's by Jochem Bökkers">
-    <meta name="keywords" content="sitefinity, iis, caching, compression, performance, web.config, transformations">
-    <title>Caching and Compression for Sitefinity v5 (2) | Jochem Bökkers Blog</title>
+    <meta name="description" content="How to speed up local development of Sitefinity websites by Jochem Bökkers">
+    <meta name="keywords" content="sitefinity, iis, ramdisk, speed, performance">
+    <title>Finding the turbo switch with Sitefinity development | Jochem Bökkers Blog</title>
     <link href="/stylesheets/styles.css" rel="stylesheet" />
     <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
 </head>
@@ -25,14 +25,14 @@
 
             </div>
             <hgroup id="blogposttheader" role="contentinfo">
-                <h2 itemprop="name">Caching and Compression for Sitefinity v5 (2)</h2>
+                <h2 itemprop="name">Finding the turbo switch with Sitefinity</h2>
             </hgroup>
         </div>
         <article id="contentwrapper">
-             <hr class="bluedivider" />
-           <header class="blogpostmeta">
+            <hr class="bluedivider" />
+            <header class="blogpostmeta">
                 <p class="postmetadata left">
-                    Published on&nbsp;<span itemprop="datePublished">2013-04-05</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
+                    Published on&nbsp;<span itemprop="datePublished">2011-09-16</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
                 </p>
                 <p class="postmetadata right">
                     <a href="//jbokkers.github.io/index.html" class="backlink" rel="index"><< &nbsp;back to overview</a>
@@ -42,85 +42,74 @@
             <section class="blogpostitem" itemprop="articleBody">
                 <!-- blogpost start -->
                 <p>
-                    In yesterday's <a href="caching_and_compression-part_1.html" title="Caching and Compression with Sitefinity v5 (part 1)" rel="prev">post</a> we looked at different web.config setting to help optimize a Sitefinity website in terms of caching and compression of static content. Naturally you don't want caching to get in the way while developing and constantly having to resort to app-recycles and clearing of the browser cache.
+                    I'm one of those guys who clicks on 'remind me in 3hrs' and then clicks the 'download' now Windows Update feature, so I found myself with some spare time to fiddle around with one of my pet things... getting Sitefinity v4 to run as smooth as possible.
                 </p>
                 <br />
                 <p>
-                    <h3>Enter web.config transformations</h3>
-                    A perhaps not-very-well-known feature yet it has been available for a few years.
+                    Over time I've tweaked and updated configuration settings. Done all the minification/combining and cache/compress settings that can be done on the Sitefinity end. And it's fast, I love it.
                 </p>
                 <br />
                 <p>
-                    Simply open your project in Visual Studio 2010 or 2012, right-click your web.config and click "Add Config Transforms". 
-                    Nested under your web.config, you'll find 3 new files called web.Debug.config, web.Release Pro.config and web.Release.config.
+                    Comparing to an old v4.0 community edition I still got installed it's amazing what an optimization the Sitefinity team achieved in just a few months. But, like many developers, it's not the runtime speed when in production is the most agrivating, but the runtime speed during development.
+                    <br /><br />
+                    You tweak a CSS rule, change some codelines in a widget... and those 4-10-20 seconds you have to wait for just that one typo is nerve wrecking...
+                 </p>
+                <br />
+                <p>
+                    <h3>The setup</h3>
+                    When I'm developing, I'm usually developing on a local machine. The database may sometimes be external, but preferrably I like to develop offline so to speak. Early on developing with Cassini (Visualstudio's integrated IIS server) or Sitefinity's Project Manager webserver proved to be very slow. IIS, which is built into Windows 7, proved to be the most stable and fast at running Sitefinity so normally when working on a project, I create two named instances in IIS pointing to a local directory to which VisualStudio publishes.
                 </p>
                 <br />
                 <p>
-                    Each of those files correspond with one of the Visual Studio solutions configurations.
-                </p>
-                <figure>
-                    <img src="visualstudio-web-config-transformations.png" alt="VisualStudio Solution Explorer with web.config transformations" width="600px" />
-                    <figcaption>Fig: VisualStudio Solution Explorer with web.config transformations</figcaption>
-                </figure>
-                <p>
-                    This will work with any ASP.NET application out-of-the-box, but instead of the usual 2 (<i>debug & release</i>), Sitefinity comes with 3 configurations and we'll take advantage of that extra one by using it for our caching.
+                    In the morning I open up my working copy in VisualStudio, hit publish and it builds and publishes to the wwwroot\projectname\www_d folder. I fire up my browser go to http://projectname.d.tld and I'm up and running.
                 </p>
                 <br />
                 <p>
-                    Anything you'd like to be always present you setup in the web.config. Anything you'd like to see changed, you simply put in the corresponding config file. On each build, Visual Studio will insert/remove/merge the transformation rules setup in the corresponding web.xxx.config for you.
-                </p>
-                <p>
-                    <ul>
-                        <li>Would you like Elmah but just when you're debugging?<br />
-                            <i>Simply add 5 lines of code to the web.Debug.config.</i>
-                        </li>
-                        <li>Do you want different url-rewrite rules for your testing & debug environment?<br />
-                            <i>Simply add the changes to each of the .config files.</i>
-                        </li>
-                        <li>Only enable caching & compression when you're in production mode?<br />
-                            <i>That's right - add the snippets from yesterdays post to your web.Release Pro.config.</i>
-                        </li>
-                    </ul>
-                    Well, it's almost that easy... Microsoft wouldn't be Microsoft if they hadn't made things a bit more difficult, and thus they introduced the xdt prefix.
+                    Now over the past time I've tried to tweak SQL Server and IIS settings aswell. But still I felt there was more to gain.... reading up on an article about SSD harddrives and how they use memory as a diskcache I thought I found a way to speed things up with an old fashion ramdisk.
                 </p>
                 <br />
                 <p>
-                    <h3>XDT stands for XML-Document-Transform</h3>
-                    in laymen terms, is nothing else than a namespace that defines two attributes: Locator and Transform. The first defines where and the second describes what to do like for instance InsertBefore, Replace and Remove.
+                    Naturally this won't solve everyone's problems/nerves while developing with Sitefinity or some other project, but if you're doing 'local' development and constantly finding yourself refreshing and clearing cache, this is definately a life saver.
                 </p>
                 <br />
                 <p>
-                    If you open the web.Release.config file in VisualStudio, you'll see the most useful one already inserted for you
-                </p>
-                    <script src="https://gist.github.com/jbokkers/32532fa36d77d7985c0b.js"></script>
-                <p>
-                    All this does is remove the compilation tag debug of the web.config. Simple, elegant and no more excuses to accidentally run production sites in debug-mode. To apply this to our caching & compression snippets from yesterday, we simply need to enhance them with a bit of markup.
+                    <h3>What's the gain...</h3>
+                    I haven't done proper lab testing but with two (almost comparable) local machines, running same project I'm seeing an tenfold decrease in page loading time both on backend and front end pages. Particularly the ever so slow backend pages like page-overview and page-edit.
                 </p>
                 <br />
                 <p>
-                    To achieve this:
-                </p>
-                    <script src="https://gist.github.com/jbokkers/80813885f640c425087a.js"></script>
-                <p>
-                    Our web.Release Pro.config will contain this:
-                </p>
-                    <script src="https://gist.github.com/jbokkers/8d10dc19471b2f13d3a9.js"></script>
-                <p>
-                    The <code>&lt;system.webServer&gt;</code> surrounding our <code>&lt;caching&gt;</code> helps the transformations locate our tag and ensures it goes into the correct section.
-                    By adding the <code>xdt:Transform=&quot;Insert&quot;</code> to the <code>&lt;caching&gt;</code> we tell VisualStudio to insert it into our newly built web.config
-                    And that&#39;s all there&#39;s to it.
+                    <i>For instance a page-edit, with cold cache, loads in under 2sec. with in total 90 requests and 1.66mb download.</i>
                 </p>
                 <br />
                 <p>
-                    A fully working <span  itemprop="mentions">Sitefinity 5.4 compatible web.Release.Config</span> can be found <a href="//github.com/FalafelSoftwareInc/Sitefinity" target="_blank" title="A Sitefinity 5.4 optimized web.config transform that enables caching and compression for static-content." rel="external">here</a> on GitHub.
-                    To read more about web.config transformations take a look at <a href="//msdn.microsoft.com/en-us/library/dd465326.aspx" target="_blank" title="MSDN Documentation: Web.config Transformation Syntax" rel="bookmark">this page</a> on MSDN or watch the <span  itemprop="mentions">Scott Hanselman</span> <a href="//channel9.msdn.com/Events/MIX/MIX10/FT14" target="_blank" title="Web Deployment Made Awesome" rel="external">Mix2010 demo</a>.
+                    <h3>The turbo switch</h3>
+                    The secret lies in IIS compiled caching. Normally, when freshly deployed or after an application pool reset, things take forever to come up. On the backend, IIS is compiling/prefetching and caching the app and finally serves it. By moving this &#39;cache&#39; from harddisk to a ramdisk, we get a tremendous performance boost. And all this can be achieved, with a minor adjustment to your web.config. 
+                    <br />
+                    Just find the <code>&lt;compilation&gt;</code> tag and add the <code>tempDirectory=&quot;driveletter:\foldername\&quot;</code> to it until it looks similar to this<br />
+                    <code>&lt;compilation debug=&quot;true/false/depending on build type ofcourse&quot; targetFramework=&quot;4.0&quot; tempDirectory=&quot;G:\cache\&quot;&gt;</code>
+                    <br />
+                    where the G: drive is ofcourse your ramdisk. 
+                 </p>
+                <br />
+                <p>
+                    I've tried it with several Sitefinity projects and with an average projectsize between 75-100Mb you need about 50-60Mb of ramdisk space. To me, a tenfold and even a fivefold decrease in loading time is worth giving up 60Mb of my 4Gb of RAM on my laptop and not gonna even be casual about disk space with my regular dev workstation.
                 </p>
+                <br />
+                <p>
+                    <h3>What's the gain...</h3>
+                    I'm running Windows7 32/64 bit and I went for the <a href="//msdn.microsoft.com/en-us/library/dd465326.aspx" target="_blank" title="Download the RamDisk utility for free" itemprop="mentions">RamDisk utility by DataRam</a>. It's a free utility, if you keep it below 4Gb. The installation takes no more than 5 minutes. Once running, you can define the size, what filesystem (FAT16 or FAT32) and voila, you have an extra drive in your Windows environment.
+                </p>
+                <br />
+                <p>
+                    Restart IIS, rebuild and republish your project and then fire up your browser!
+                </p>
+                <br />
                 <!-- blogpost end -->
             </section>
             <hr class="bluedivider" />
             <footer class="blogpostmeta">
                 <p class="postmetadata left">
-                    Keywords:&nbsp;<span itemprop="keywords">Sitefinity, web.config, transformations</span>
+                    Keywords:&nbsp;<span itemprop="keywords">Sitefinity, ramdisk, speed</span>
                 </p>
                 <p class="postmetadata right">
                     <a itemprop="url" href="//jbokkers.github.io/index.html" class="backlink"><< &nbsp;back to overview</a>
