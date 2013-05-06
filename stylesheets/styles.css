@@ -24,7 +24,7 @@ body, .ReadMsgBody, .ExternalClass { background-color: #f8f8ff; } #contentwrappe
     h2 { font-size: 13px; }
     h3 { font-size: 14px; }
     .outtro { padding: 0px 30px 30px 30px; }
-    .postmetadata .right { display: none; }
+    p.postmetadata.right { visibility: hidden; }
     #wrapper { margin: 10px auto 0px auto; }
     figure { margin-top: 15px; }
     .columnthird p { margin-right: 0px; margin-left: 0px; }
@@ -41,7 +41,7 @@ body, .ReadMsgBody, .ExternalClass { background-color: #f8f8ff; } #contentwrappe
     .blogpostmeta { padding: 0px 0px 0px 30px; }
 }
 
-@media screen and (min-width: 320px) and (max-width: 640px) {
+@media screen and (min-width: 321px) and (max-width: 640px) {
     #wrapper { max-width: 460px; }
     #headerwrapper, #headerlogo, .bloglistitem, .blogpostitem, figure, figure > img { width: 400px; }
     #headersocial { width: 200px; }
@@ -53,7 +53,7 @@ body, .ReadMsgBody, .ExternalClass { background-color: #f8f8ff; } #contentwrappe
     h3 { font-size: 14px; }
     .outtro { padding: 0px 30px 30px 30px; }
     .blogpostmeta { width: 430px; }
-    .postmetadata .right { display: none; }
+    p.postmetadata.right { visibility: hidden; }
 }
 
 @media print {
