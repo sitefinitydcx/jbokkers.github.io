@@ -17,7 +17,9 @@ p.postmetadata {color: #ccc;font-size: 12px; }
 #wrapper { max-width: 660px; } .blogpostmeta { width: 630px; } #headerwrapper, #headerlogo, .bloglistitem, .blogpostitem, figure, figure > img { width: 600px; } .columntext { width: 400px; } #headersocial { width: 300px; } .columnimage, .columnthird { width: 200px; }
 /*  ------------------------------------------------------------------------*/
 #wrapper { margin: 30px auto 0px auto; } figure { margin-top: 15px; } .columnthird p { margin-right: 0px; margin-left: 0px; } 
-h1 { margin-top: 20px; margin-bottom: 10px; } 
+h1 { margin-top: 20px; margin-bottom: 10px; }
+#blogposttheader h1{ display: block; float: left; margin: 0px; padding: 0px; width: 100%; color: #666; text-transform: uppercase; font-weight: bold; font-size: 20px; line-height: 30px; }
+.blogpostitem  h2{display: block; float: left; margin: 0px; padding: 0px; width: 100%;font-size:16px;line-height:24px;text-transform: none;color: #818181;}
 h4 { margin-top: 10px; margin-bottom: 0px; } 
 #headerwrapper { padding: 0px 30px; } #contentheader { padding: 0px 30px 40px 30px; } .bloglistitem { padding: 20px 30px; } .blogpostitem { padding: 20px 30px 20px 30px; } .calltoaction { padding: 40px 30px 45px 30px; } .columntext { padding: 25px 0px; } .outtro { padding: 30px; } #blogposttheader { padding: 30px 30px 15px 30px; } .blogpostmeta { padding: 0px 0px 0px 30px; }
 /*  ------------------------------------------------------------------------*/

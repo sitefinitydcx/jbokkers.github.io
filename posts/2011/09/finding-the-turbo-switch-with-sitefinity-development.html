@@ -8,37 +8,39 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="cleartype" content="on">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to speed up local development and testing of Sitefinity websites with IIS 7">
-    <meta name="keywords" content="sitefinity, iis, ramdisk, speed, performance">
-    <meta name="language" content="english" />
+    <meta name="MobileOptimized" content="320">
+    <meta name="language" content="en" />
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Jochem Bökkers" />
+    <meta name="author" content="Jochem Bökkers">
+    <meta name="description" content="How to speed up local development and testing of Sitefinity websites with IIS 7">
+    <meta name="keywords" content="sitefinity development, local development, iis, speed, ramdisk, performance, optimization">
     <title>Finding the turbo switch with Sitefinity development - a blogpost by Jochem Bökkers</title>
-    <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/stylesheets/styles.min.css" rel="stylesheet" />
     <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
 </head>
 <body>
     <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
-        <div id="headerwrapper" role="heading">
+        <header id="headerwrapper" role="heading">
             <div id="headerlogo" role="banner">
                 <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
                     <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
-
             </div>
-            <hgroup id="blogposttheader" role="contentinfo">
-                <h2 itemprop="name">Finding the turbo switch with Sitefinity</h2>
-            </hgroup>
-        </div>
+        </header>
         <article id="contentwrapper">
+            <hgroup id="blogposttheader" role="contentinfo">
+                <h1 itemprop="name">Finding the turbo switch with Sitefinity</h1>
+            </hgroup>
             <hr class="bluedivider" />
             <header class="blogpostmeta">
                 <p class="postmetadata left">
                     Published on&nbsp;<span itemprop="datePublished">2011-09-16</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/index.html" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </header>
             <hr class="bluedivider" />
@@ -59,7 +61,7 @@
                  </p>
                 <br />
                 <p>
-                    <h3>The setup</h3>
+                    <h2>The setup</h2>
                     When I'm developing, I'm usually developing on a local machine. The database may sometimes be external, but preferrably I like to develop offline so to speak. Early on developing with Cassini (Visualstudio's integrated IIS server) or Sitefinity's Project Manager webserver proved to be very slow. IIS, which is built into Windows 7, proved to be the most stable and fast at running Sitefinity so normally when working on a project, I create two named instances in IIS pointing to a local directory to which VisualStudio publishes.
                 </p>
                 <br />
@@ -76,7 +78,7 @@
                 </p>
                 <br />
                 <p>
-                    <h3>What's the gain...</h3>
+                    <h2>What's the gain...</h2>
                     I haven't done proper lab testing but with two (almost comparable) local machines, running same project I'm seeing an tenfold decrease in page loading time both on backend and front end pages. Particularly the ever so slow backend pages like page-overview and page-edit.
                 </p>
                 <br />
@@ -85,7 +87,7 @@
                 </p>
                 <br />
                 <p>
-                    <h3>The turbo switch</h3>
+                    <h2>The turbo switch</h2>
                     The secret lies in IIS compiled caching. Normally, when freshly deployed or after an application pool reset, things take forever to come up. On the backend, IIS is compiling/prefetching and caching the app and finally serves it. By moving this &#39;cache&#39; from harddisk to a ramdisk, we get a tremendous performance boost. And all this can be achieved, with a minor adjustment to your web.config. 
                     <br />
                     Just find the <code>&lt;compilation&gt;</code> tag and add the <code>tempDirectory=&quot;driveletter:\foldername\&quot;</code> to it until it looks similar to this<br />
@@ -99,7 +101,7 @@
                 </p>
                 <br />
                 <p>
-                    <h3>What's the gain...</h3>
+                    <h2>Where to get it...</h2>
                     I'm running Windows7 32/64 bit and I went for the <a href="//msdn.microsoft.com/en-us/library/dd465326.aspx" target="_blank" title="Download the RamDisk utility for free" itemprop="mentions">RamDisk utility by DataRam</a>. It's a free utility, if you keep it below 4Gb. The installation takes no more than 5 minutes. Once running, you can define the size, what filesystem (FAT16 or FAT32) and voila, you have an extra drive in your Windows environment.
                 </p>
                 <br />
@@ -115,7 +117,7 @@
                     Keywords:&nbsp;<span itemprop="keywords">Sitefinity, ramdisk, speed</span>
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/index.html" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </footer>
             <hr class="bluedivider" />

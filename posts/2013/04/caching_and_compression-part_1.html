@@ -8,14 +8,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="cleartype" content="on">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to setup caching and compression with IIS 7 and Sitefinity 5 in the most optimal way">
-    <meta name="keywords" content="sitefinity, iis, caching, compression, performance, web.config, transformations">
-    <meta name="language" content="english" />
+    <meta name="MobileOptimized" content="320">
+    <meta name="language" content="en" />
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Jochem Bökkers" />
+    <meta name="author" content="Jochem Bökkers">
+    <meta name="description" content="How to setup caching and compression with IIS 7 and Sitefinity 5 in the most optimal way">
+    <meta name="keywords" content="sitefinity, iis, caching, compression, performance">
     <title>Caching and Compression for Sitefinity v5 (1) - a blogpost by Jochem Bökkers</title>
-    <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/stylesheets/styles.min.css" rel="stylesheet" />
     <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
 </head>
 <body>
@@ -26,11 +29,11 @@
                     <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
             </div>
-            <hgroup id="blogposttheader" role="contentinfo">
-                <h2 itemprop="name">Caching and Compression for Sitefinity v5 (1)</h2>
-            </hgroup>
         </div>
         <article id="contentwrapper">
+            <hgroup id="blogposttheader" role="contentinfo">
+                <h1 itemprop="name">Caching and Compression for Sitefinity v5 (1)</h1>
+            </hgroup>
              <hr class="bluedivider" />
            <header class="blogpostmeta">
                <p class="postmetadata left">
@@ -38,7 +41,7 @@
 
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/index.html" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </header>
             <hr class="bluedivider" />
@@ -53,7 +56,7 @@
                 </p>
                 <figure>
                     <img src="cache-optimized-yslow-graph-sitefinity.png" alt="Cache optimized Yslow Sitefinity result" width="600px" />
-                    <figcaption>Fig: Optimized Sitefinity website loading</figcaption>
+                    <figcaption>Fig: Optimized website loading</figcaption>
                 </figure>
                 <p>
                     And while you can control the caching of the page content itself from within Sitefinity (page>properties) there is no built in method to control static content like javascript, css or images.
@@ -64,21 +67,21 @@
                 </p>
                 <br />
                 <p>
-                    <h3>First up is setting up a caching profile.</h3>
+                    <h2>First up is setting up a caching profile.</h2>
                     In it we define various common extensions and tell IIS how to handle these files, in this cache we simply tell IIS to cache them on the client until they've changed.                
                 </p>
                 <br />
                     <script src="https://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
                 <br />
                 <p>
-                    <h3>The second step is to define which content gets compressed.</h3>
+                    <h2>The second step is to define which content gets compressed.</h2>
                     We do this by telling IIS how to handle individual mime-types by simply iterating over the individual mime-types.
                 </p>
                 <br />
                     <script src="https://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
                 <br />
                 <p>
-                    <h3>And finally, iterate static content mime-types to ensure they're properly served.</h3>
+                    <h2>And finally, iterate static content mime-types to ensure they're properly served.</h2>
                     First setup client-caching logic to use 31 days. Then for individual mime-types we remove the mapping and re-assign it. At the same time by adding the charset=UTF-8 we avoid any unicode/ascii character encoding conflicts.
                 </p>
                 <br />
@@ -110,7 +113,7 @@ All of our static content types get returned with a 304 Not modified code so the
                     Keywords:&nbsp;<span itemprop="keywords">Sitefinity, caching, optimizations</span>
                 </p>
                <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/index.html" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </footer>
             <hr class="bluedivider" />
