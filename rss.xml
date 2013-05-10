@@ -19,12 +19,6 @@
       <height>280</height>
     </image>
     <item>
-      <title>It's time for an update</title>
-      <description>X9326MP58GN8</description>
-      <link>http://jbokkers.github.io/posts/2013/05/X9326MP58GN8.html</link>
-      <pubDate>Fri, 10 May 2013 14:01:01 -0500</pubDate>
-    </item>
-    <item>
       <title>Caching and Compression for Sitefinity v5 (2)</title>
       <description>How to use web.config transformations to optimize different development scenario's by Jochem Bökkers</description>
       <link>http://jbokkers.github.io/posts/2013/04/caching_and_compression-part_2.html</link>
