@@ -19,6 +19,12 @@
       <height>280</height>
     </image>
     <item>
+      <title>It's time for an update</title>
+      <description>X9326MP58GN8</description>
+      <link>http://jbokkers.github.io/posts/2013/05/X9326MP58GN8.html</link>
+      <pubDate>Fri, 10 May 2013 14:01:01 -0500</pubDate>
+    </item>
+    <item>
       <title>Caching and Compression for Sitefinity v5 (2)</title>
       <description>How to use web.config transformations to optimize different development scenario's by Jochem Bökkers</description>
       <link>http://jbokkers.github.io/posts/2013/04/caching_and_compression-part_2.html</link>
@@ -29,6 +35,18 @@
       <description>How to setup caching and compression with IIS 7 and Sitefinity 5 by Jochem Bökkers</description>
       <link>http://jbokkers.github.io/posts/2013/04/caching_and_compression-part_1.html</link>
       <pubDate>Fri, 4 Apr 2013 14:01:01 -0500</pubDate>
+    </item>
+    <item>
+      <title>Sitefinity Boilerplate DeepDive</title>
+      <description>A detailed look at all the different elements that make up the Sitefinity Boilerplate project and how to tweak them to easily get you up and running within a few minutes.</description>
+      <link>http://jbokkers.github.io/posts/2012/03/sitefinity-boilerplate-deepdive.html</link>
+      <pubDate>Tue, 27 Apr 2012 14:01:01 -0500</pubDate>
+    </item>
+    <item>
+      <title>Sitefinity Boilerplate</title>
+      <description>With recently Sitefinity Thunder being released, I thought it was time for a new approach and an easier way of starting a new Sitefinity project...</description>
+      <link>http://jbokkers.github.io/posts/2012/03/sitefinity-boilerplate.html</link>
+      <pubDate>Mon, 26 Apr 2012 14:01:01 -0500</pubDate>
     </item>
     <item>
       <title>Finding the Sitefinity turbo-switch</title>
