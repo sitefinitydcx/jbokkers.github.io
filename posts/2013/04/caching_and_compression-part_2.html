@@ -26,7 +26,7 @@
     <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
         <div id="headerwrapper" role="heading">
             <div id="headerlogo" role="banner">
-                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
+                <a href="/" style="color: #ffffff;" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index">
                     <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
             </div>
@@ -41,7 +41,7 @@
                     Published on&nbsp;<span itemprop="datePublished">2013-04-05</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                    <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </header>
             <hr class="bluedivider" />
@@ -65,7 +65,7 @@
                     Each of those files correspond with one of the Visual Studio solutions configurations.
                 </p>
                 <figure>
-                    <img src="visualstudio-web-config-transformations.png" alt="VisualStudio Solution Explorer with web.config transformations" width="600px" />
+                    <img src="visualstudio-web-config-transformations.png" alt="VisualStudio Solution Explorer screenshot  showing web.config transformations" title="VisualStudio Solution Explorer with web.config transformations" />
                     <figcaption>Fig: VisualStudio Solution Explorer with web.config transformations</figcaption>
                 </figure>
                 <p>
@@ -98,7 +98,7 @@
                 <p>
                     If you open the web.Release.config file in VisualStudio, you'll see the most useful one already inserted for you
                 </p>
-                <script src="https://gist.github.com/jbokkers/32532fa36d77d7985c0b.js"></script>
+                <script src="http://gist.github.com/jbokkers/32532fa36d77d7985c0b.js"></script>
                 <p>
                     All this does is remove the compilation tag debug of the web.config. Simple, elegant and no more excuses to accidentally run production sites in debug-mode. To apply this to our caching & compression snippets from yesterday, we simply need to enhance them with a bit of markup.
                 </p>
@@ -106,11 +106,11 @@
                 <p>
                     To achieve this:
                 </p>
-                <script src="https://gist.github.com/jbokkers/80813885f640c425087a.js"></script>
+                <script src="http://gist.github.com/jbokkers/80813885f640c425087a.js"></script>
                 <p>
                     Our web.Release Pro.config will contain this:
                 </p>
-                <script src="https://gist.github.com/jbokkers/8d10dc19471b2f13d3a9.js"></script>
+                <script src="http://gist.github.com/jbokkers/8d10dc19471b2f13d3a9.js"></script>
                 <p>
                     The <code>&lt;system.webServer&gt;</code> surrounding our <code>&lt;caching&gt;</code> helps the transformations locate our tag and ensures it goes into the correct section.
                     By adding the <code>xdt:Transform=&quot;Insert&quot;</code> to the <code>&lt;caching&gt;</code> we tell VisualStudio to insert it into our newly built web.config
@@ -118,8 +118,10 @@
                 </p>
                 <br />
                 <p>
-                    A fully working <span itemprop="mentions">Sitefinity 5.4 compatible web.Release.Config</span> can be found <a href="//github.com/FalafelSoftwareInc/Sitefinity" target="_blank" title="A Sitefinity 5.4 optimized web.config transform that enables caching and compression for static-content." rel="external">here</a> on GitHub.
-                    To read more about web.config transformations take a look at <a href="//msdn.microsoft.com/en-us/library/dd465326.aspx" target="_blank" title="MSDN Documentation: Web.config Transformation Syntax" rel="bookmark">this page</a> on MSDN or watch the <span itemprop="mentions">Scott Hanselman</span> <a href="//channel9.msdn.com/Events/MIX/MIX10/FT14" target="_blank" title="Web Deployment Made Awesome" rel="external">Mix2010 demo</a>.
+                    See a fully working Sitefinity 5 compatible example <a href="http://github.com/FalafelSoftwareInc/Sitefinity" target="_blank" title="A Sitefinity 5 optimized web.config transform that enables caching and compression for static-content." rel="external" itemprop="mentions">web.Release.Config</a> on GitHub.<br />
+                    To read more take a look at the <a href="http://msdn.microsoft.com/en-us/library/dd465326.aspx" target="_blank" title="MSDN Documentation: Web.config Transformation Syntax" rel="bookmark" itemprop="mentions">MSDN article on the xdt syntax</a>
+                    <br />
+                    Or watch the <a href="http://channel9.msdn.com/Events/MIX/MIX10/FT14" target="_blank" title="Web Deployment Made Awesome" rel="external" itemprop="mentions">Mix2010 'Web Deployment Made Awesome' demo</a> by <span itemprop="mentions">Scott Hanselman</span> .
                 </p>
                 <!-- blogpost end -->
             </section>
@@ -129,7 +131,7 @@
                     Keywords:&nbsp;<span itemprop="keywords">Sitefinity, web.config, transformations</span>
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                    <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </footer>
             <hr class="bluedivider" />
@@ -137,8 +139,23 @@
         <footer id="footerwrapper">
             <aside class="calltoaction">
                 <p>
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="jbokkers">Tweet</a>&nbsp;                       
+                    <a href="http://twitter.com/share" class="twitter-share-button" data-via="jbokkers">Tweet</a>&nbsp;                       
                     <g:plusone size="medium"></g:plusone>
+                </p>
+                <p>
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_shortname = 'itstimeforanupdate'; 
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function () {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
                 </p>
             </aside>

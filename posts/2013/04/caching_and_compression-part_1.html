@@ -26,7 +26,7 @@
     <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
         <div id="headerwrapper" role="heading">
             <div id="headerlogo" role="banner">
-                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
+                <a href="/" style="color: #ffffff;" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index">
                     <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
             </div>
@@ -42,7 +42,7 @@
 
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </header>
             <hr class="bluedivider" />
@@ -72,21 +72,21 @@
                     In it we define various common extensions and tell IIS how to handle these files, in this cache we simply tell IIS to cache them on the client until they've changed.                
                 </p>
                 <br />
-                    <script src="https://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
+                    <script src="http://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
                 <br />
                 <p>
                     <h2>The second step is to define which content gets compressed.</h2>
                     We do this by telling IIS how to handle individual mime-types by simply iterating over the individual mime-types.
                 </p>
                 <br />
-                    <script src="https://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
+                    <script src="http://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
                 <br />
                 <p>
                     <h2>And finally, iterate static content mime-types to ensure they're properly served.</h2>
                     First setup client-caching logic to use 31 days. Then for individual mime-types we remove the mapping and re-assign it. At the same time by adding the charset=UTF-8 we avoid any unicode/ascii character encoding conflicts.
                 </p>
                 <br />
-                    <script src="https://gist.github.com/jbokkers/108995d43ca23f099d83.js"></script>
+                    <script src="http://gist.github.com/jbokkers/108995d43ca23f099d83.js"></script>
                 <br />
                 <p>
                     Encapsulate these snippets in a <code>&lt;system.webserver&gt;</code> tag at the bottom of your web.config, recycle and navigate to your project.
@@ -99,7 +99,7 @@
                 <br />
                 <p>
                     Our content page, was not cached so it is fetched from the server each time. 
-All of our static content types get returned with a 304 Not modified code so the browser won't download them again. And even the final JavaScript file, which gets loaded asynchronously gets cached in the browser.
+                    All of our static content types get returned with a 304 Not modified code so the browser won't download them again. And even the final JavaScript file, which gets loaded asynchronously gets cached in the browser.
                 </p>
                 <br />
                 <p>
@@ -114,7 +114,7 @@ All of our static content types get returned with a 304 Not modified code so the
                     Keywords:&nbsp;<span itemprop="keywords">Sitefinity, caching, optimizations</span>
                 </p>
                <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </footer>
             <hr class="bluedivider" />
@@ -127,6 +127,22 @@ All of our static content types get returned with a 304 Not modified code so the
 
                 </p>
             </aside>
+                <p>
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_shortname = 'itstimeforanupdate';
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function () {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </p>
             <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <div class="columnthird left">
                     <p>

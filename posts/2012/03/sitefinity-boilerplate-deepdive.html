@@ -26,7 +26,7 @@
     <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
         <div id="headerwrapper" role="heading">
             <div id="headerlogo" role="banner">
-                <a href="//jbokkers.github.io/index.html" style="color: #ffffff;" title="Return to the Blog overview">
+                <a href="/" style="color: #ffffff;" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index">
                     <img src="/images/logo.jpg" alt="logo" role="img" width="200px" height="140px" />
                 </a>
             </div>
@@ -41,7 +41,7 @@
                     Published on&nbsp;<span itemprop="datePublished">2012-03-27</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </header>
             <hr class="bluedivider" />
@@ -51,7 +51,146 @@
                     In the <a href="sitefinity-boilerplate.html" title="Sitefinity Boilerplate Introductions" rel="prev">previous post</a> I've outlined what the Sitefinity Boilerplate project is and where to get a copy.
                 </p>
                 <br />
-                <!-- blogpost end -->
+                <p>
+                    When you unzip the file or clone the repository you’ll see the sfboilerplated folder with inside the familiar folder structure of a Sitefinity Template & Theme. You can go straight ahead and copy the entire folder structure and files into your Visual Studio solution, publish it and you’re already done! But if you don't understand what 'rtfm' stands for, you might want to continue reading...
+                </p>
+                <br />
+                <p>
+                    <h2>readme.md</h2>
+                    This file contains the general release notes, changelog and a short description to each file.
+                </p>
+                <br />
+                <p>
+                    <h2>sitefinity-icons.zip</h2>
+                    Sitefinity doesn’t come with a favicon so this file contains all the precomposed icons for all the iPhone/iPad & Android devices, which you can just paste in the rootfolder of your project. The favicon.ico comes in 2 flavors; the default is the smallest one (16x16) and is a regular favicon.ico as we’ve all known them for years. 
+                    <br /><br />
+                    The favicon-ie.ico is IE9/IE10 enhanced and supports site pinning. This version consists of 64x64px, 32x32px, 24x24px and 16x16px so is considerably larger but required when using Sitepinning. If you want to use this version, just delete the other favicon.ico and rename this file.
+                    <br /><br />
+                    Windows8’s Metro desktop will support site pinning onto the desktop and no, we don’t need to name those files in our master pages, browsers will detect them by themselves. 
+                    For more information checkout the <a href="http://msdn.microsoft.com/en-us/library/ie/gg491731(v=vs.85).aspx" target="_blank" title="Pinned Sites Developer Documentation" rel="link" itemprop="mentions">MSDN documentation on pinned sites</a>.
+                </p>
+                <br />
+                <p>
+                    <h2>App_Master folder</h2>
+                    As mentioned before, there’s only 1 masterpage (template) inside SF|Boilerplated. When you open it up in Visual Studio (or your favorite editor) you’ll immediately see familiar bits and pieces from the HTML5Boilerplate project. We’ll dive into a more detailed look in a minute…
+                </p>
+                <br />
+                 <p>
+                    <h2>App_Themes/sfboilerplated folder</h2>
+                    This folder contains the familiar theme structure of Sitefinity with a global, Images and Styles folder. Inside the Styles folder is an optional ‘BrowseAndEdit.css’ file, containing all the necessary styles to support Browse and Edit functionality. If you do, just move it to the Global folder and add it to <code>cssLoadOrder.xml</code>. If you don’t – you don’t have to do anything.
+                </p>
+                <br />
+                 <p>
+                     The Global folder contains the <code>ccsLoadOrder.xml</code>, which describes which .css files get loaded with Sitefinity and in which order. Next you’ll see 3 files called ‘normalize’, ‘layout’ and ‘layout_transformations’.
+                </p>
+                <br />
+                 <p>
+                     The ‘normalize’ file contains everything needed to ‘reset’ or better said ‘normalize’ all the different browsers from different vendors (IE, Chrome, Firefox, Safari & Opera are fully tested).
+                </p>
+                <br />
+                 <p>
+                    Normally you don’t have to change anything to this file, unless you’re concerned about W3C validation. In which case when you edit it, you’ll see hacks and compatibility breakers stored in a different region so you can easily delete them.
+                </p>
+                <br />
+                 <p>
+                     The ‘layout’ file is the stylesheet file for your project. On the top you’ll find a few lines establishing a vertical rhythm and at the bottom you’ll see the familiar non semantic helper classes. Just write your project’s markup in between and no harm can come from anything ?
+                </p>
+                <br />
+                 <p>
+                     The ‘layout_transformations’ file is where your media-queries for responsive design and mobile friendliness are stored. By default only 1 ‘mobile-sized’ media query is defined and one print-friendly media query.
+                </p>
+                <br />
+                 <p>
+                     If you’ve taken a peek inside the folder, you’ll actually see there are 3 types of files for ‘normalize’, ‘layout’ and ‘layout_transformations’. 
+                     For each file we’ve provided the development version (.css) the minified production ready version (.min.css) and a LESS version (.yui.less).
+                </p>
+                <br />
+                 <p>
+                    When you’re not using .less or the production ready .min.css files you can safely delete them.
+                </p>
+                <br />
+                <p>
+                    <h2>JS folder</h2>
+                    This folder contains only 3 files; the first being standard jQuery.
+                </p>
+                <br />
+                <p>
+                    The <code>jquery-1.7.1.min.js</code> is by default loaded from Google’s CDN, this file is used as a fallback in case the CDN is unreachable. It is just provided for convenience and is the same version as Sitefinity expects.
+                </p>
+                <br />
+                <p>
+                    The <code>script.top.min.js</code> is a file referenced by the Masterpage. This file contains all the Javascript needed to be loaded in the &lt;head&gt; section of your template. 
+                    By default it already contains a minified, production ready version of Modernizr (which is needed for fallback browsers).
+                </p>
+                <br />
+                <p>
+                    The <code>script.bottom.min.js</code> is also referenced by the Masterpage and can contain any project Javascript or jQuery you’d like to be added. 
+                    By default this script is called before the body closing tag (preffered way of loading js) and after jQuery is loaded.
+                </p>
+                <br />
+                <p>
+                    <h2>The sfv5-1column.Master up close and personal</h2>
+                    When you open the Masterpage, you’ll notice 3 Sitefinity lines for compatibility, directly followed by the HTML5 doctype declaration. Be sure to change the <code>lang=”en”</code> if your Masterpage isn’t going to be English so browsers will correctly identify the language. 
+                </p>
+                <br />
+                <p>
+                    The meta tag '<code>http-equiv</code>' will break W3C validation but it will ensure that Browsers will try and load the latest version (looking at you IE9) and not quirksmode. 
+                    The '<code>viewport</code>' tag is added for mobile media-queries.
+                </p>
+                <br />
+                <p>
+                    Next you’ll see 4 '<code>ms-application</code>' and 1 '<code>application-name</code>' meta-tags, these are the essential bits for IE9 sitepinning, you can either remove them if you don’t want it or change the content values.
+                </p>
+                <br />
+                <p>
+                    The ‘<code>title</code>’, ‘<code>author</code>’ and ‘<code>version</code>’ are inserted for future Telerik layout builder and Thunder support. And the <code>&lt;head&gt;</code> section ends with the already described link to the <code>script.top.min.js</code> file.
+                </p>
+                <br />
+                <p>
+                    Right underneath the <code>&lt;body&gt;</code> tag, you’ll see 1 line urging users to upgrade their browsers, if you’re still supporting IE6 – remove this line. Right after the <code>&lt;scriptmanager&gt;</code> you’ll notice an ‘accesskey’ href for screenreaders. 
+                    If you update the id <code>#cpw_content</code>, be sure to update it in the href as well. It utilizes Sitefinity resource translations for the hidden text.
+                </p>
+                <br />
+                <p>
+                    Inside the ‘PublicWrapper’ is where all the magic is finally happening. The Masterpage is divided into 4 different sections to describe the base document outline. These are the ‘header’, ‘banner’, ‘content’, ‘footer’. 
+                </p>
+                <br />
+                <p>
+                    <h2>Let’s look at the ‘HeaderWrapper’ more closely…</h2>
+                    The wrapper consists of a <code>&lt;div&gt;</code> and not a <code>&lt;section&gt;</code> because we’re containing 2 different landmark sections. 
+                    A ‘role’ has been added to each part to describe the correct functionality for accessibility according to WIA-ARIA guidelines.
+                </p>
+                <br />
+                <p>
+                    Classes have been assigned to correspond with Sitefinity’s backend page edit region layout-editor. 
+                    Wrapper classes are ‘sf_cols’ and containing divs are ‘sf_colsOut’.
+                </p>
+                <br />
+                <p>
+                    By using this naming convention, we ensure that our regions will act similar to regions added inside Sitefinity and by adding style rules to these 2 classes, we also ensure end-clients won’t get unexpected results.
+                </p>
+                <br />
+                <p>
+                    <h2>The ‘FooterWrapper’</h2>
+                    Near the bottom of the Masterpage, you’ll find the ‘ScriptWrapper’. This wrapper is defined outside of the default PublicWrapper, so it just sits at the bottom of the page with none of the styling applied.
+                </p>
+                <br />
+                <p>
+                    First we’ll load jQuery from the Google CDN, with a local fallback. Next we’ll load the async Google Analytics snippet. If you’re using Sitefinity’s Analytics widget, you can just delete it.
+                 </p>
+                <br />
+                <p>
+                    Underneath the reference for ‘<code>script.bottom.min.js</code>’ we’ll see one final placeholder.
+                    This placeholder will/can/should act as a placeholder for Sitefinity’s page editor. Nothing added to this region will be displayed on the website.  
+                    Having a separate region inside the page editor ensures that dropping style widgets or script widgets won’t break a user’s visual lay out of the page and gives us a nicer user experience.
+                </p>
+                <br />
+                <br />
+                <p>
+                    That’s it, have fun! Use it, share it and please comment on it to make this an even better boilerplate…
+                </p>
+                <br />
+               <!-- blogpost end -->
             </section>
             <hr class="bluedivider" />
             <footer class="blogpostmeta">
@@ -59,7 +198,7 @@
                     Keywords:&nbsp;<span itemprop="keywords">SF-Boilerplate, Sitefinity, boilerplate, html5</span>
                 </p>
                 <p class="postmetadata right">
-                    <a href="http://jbokkers.github.io/" class="backlink" rel="index"><< &nbsp;back to overview</a>
+                <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index"><< &nbsp;back to overview</a>
                 </p>
             </footer>
             <hr class="bluedivider" />
@@ -71,7 +210,23 @@
                     <g:plusone size="medium"></g:plusone>
 
                 </p>
-            </aside>
+                 <p>
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_shortname = 'itstimeforanupdate';
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function () {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </p>
+           </aside>
             <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <div class="columnthird left">
                     <p>
