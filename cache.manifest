@@ -1,6 +1,7 @@
 ﻿CACHE MANIFEST
 NETWORK:
-*
+*.html
+
 CACHE:
 /javascripts/modernizr-2.6.2.min.js
 /javascripts/jquery-1.9.1.min.js
@@ -13,3 +14,4 @@ CACHE:
 /images/20120327-boilerplate-deepdive.png
 /images/20130404-caching_and_compression-part_1.png
 /images/20130405-caching_and_compression-part_2.png
+/images/20130829-twbs300video.png
