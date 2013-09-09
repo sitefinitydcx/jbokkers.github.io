@@ -6,9 +6,9 @@
     <link>http://jbokkers.github.io/</link>
     <copyright>Copyright 2013 Jochem Bökkers.</copyright>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 May 2013 14:01:01 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 28 August 2013 14:01:01 -0500</lastBuildDate>
     <managingEditor>jochem.bokkers@gmail.com</managingEditor>
-    <pubDate>Mon, 20 May 2013 14:01:01 -0500</pubDate>
+    <pubDate>Mon, 28 August 2013 14:01:01 -0500</pubDate>
     <webMaster>jochem.bokkers@gmail.com</webMaster>
     <image>
       <url>http://jbokkers.github.io/images/logo.jpg</url>
@@ -19,7 +19,13 @@
       <height>280</height>
     </image>
     <item>
-      <title>Sitefinity 6 and Twitter Bootstrap video</title>
+      <title>Sitefinity 6 and Twitter Bootstrap 3.0 How-To</title>
+      <description>A short video to demonstate how to use the twbs theme and template which is part of the Boilerplate project</description>
+      <link>http://youtu.be/KbteHzlt8lA</link>
+      <pubDate>Mon, 28 August 2013 14:01:01 -0500</pubDate>
+    </item>
+    <item>
+      <title>Sitefinity 6 and Twitter Bootstrap 2.3 video</title>
       <description>A short video demonstrating the capabilities and compatibility of the Twitter Bootstrap theme and template with Sitefinity which is part of the Boilerplate project</description>
       <link>http://youtu.be/6p9IaBntfec</link>
       <pubDate>Mon, 20 May 2013 14:01:01 -0500</pubDate>
