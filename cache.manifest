@@ -1,12 +1,16 @@
-﻿CACHE MANIFEST
-NETWORK:
-*
-*.html
+CACHE MANIFEST
 
-CACHE:
 /javascripts/modernizr-2.6.2.min.js
 /javascripts/jquery-1.9.1.min.js
 /images/logo.jpg
+
+FALLBACK:
+/ /offline.html
+
+NETWORK:
+*
+
+CACHE:
 /images/jbokkers_profile.jpg
 /images/telerik_mvp.jpg
 /images/gplus-64.png
