@@ -19,6 +19,13 @@
     <meta name="rating" content="general" />
     <meta name="description" content="How to setup caching and compression with IIS 7 and Sitefinity 5 in the most optimal way" />
     <meta name="keywords" content="sitefinity, iis, caching, compression, performance, static content, gzip" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jbokkers">
+    <meta name="twitter:creator" content="@jbokkers">
+    <meta property="og:url" content="http://jbokkers.github.io/posts/2013/04/caching_and_compression-part_1.html">
+    <meta property="og:title" content="Caching and compression for Sitefinity v5 (part 1)">
+    <meta property="og:description" content="How to setup caching and compression with Sitefinity and IIS 7.">
+    <meta property="og:image" content="http://jbokkers.github.io/posts/2013/04/cache-optimized-yslow-graph-sitefinity.png">
     <title>Caching and Compression for Sitefinity v5 (1) - a blogpost by Jochem Bokkers</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href="/stylesheets/styles.min.css" rel="stylesheet" />
@@ -37,14 +44,13 @@
             <hgroup id="blogposttheader" role="contentinfo">
                 <h1 itemprop="name">Caching and Compression for Sitefinity v5 (1)</h1>
             </hgroup>
-             <hr class="bluedivider" />
-           <header class="blogpostmeta">
-               <p class="postmetadata left">
-                    Published on&nbsp;<span itemprop="datePublished">2013-04-04</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
-
+            <hr class="bluedivider" />
+            <header class="blogpostmeta">
+                <p class="postmetadata left">
+                    Published on&nbsp;<span itemprop="datePublished">2013-04-05</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
                 </p>
                 <p class="postmetadata right">
-                <a href="/" class="backlink" title="Return to the Blog overview" role="link" rel="index">&lt;&lt;&nbsp;&nbsp;back to overview</a>
+                    <a href="/" class="backlink" title="Return to the Blog overview" role="link" rel="index">&lt;&lt;&nbsp;&nbsp;back to overview</a>
                 </p>
             </header>
             <hr class="bluedivider" />
@@ -74,21 +80,21 @@
                     In it we define various common extensions and tell IIS how to handle these files, in this cache we simply tell IIS to cache them on the client until they've changed.                
                 </p>
                 <br />
-                    <script src="http://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
+                <script src="http://gist.github.com/jbokkers/f4367dcd51359a402342.js"></script>
                 <br />
                 <p>
                     <h2>The second step is to define which content gets compressed.</h2>
                     We do this by telling IIS how to handle individual mime-types by simply iterating over the individual mime-types.
                 </p>
                 <br />
-                    <script src="http://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
+                <script src="http://gist.github.com/jbokkers/6e92e586abf9397fe73f.js"></script>
                 <br />
                 <p>
                     <h2>And finally, iterate static content mime-types to ensure they're properly served.</h2>
                     First setup client-caching logic to use 31 days. Then for individual mime-types we remove the mapping and re-assign it. At the same time by adding the charset=UTF-8 we avoid any unicode/ascii character encoding conflicts.
                 </p>
                 <br />
-                    <script src="http://gist.github.com/jbokkers/108995d43ca23f099d83.js"></script>
+                <script src="http://gist.github.com/jbokkers/108995d43ca23f099d83.js"></script>
                 <br />
                 <p>
                     Encapsulate these snippets in a <code>&lt;system.webserver&gt;</code> tag at the bottom of your web.config, recycle and navigate to your project.
@@ -115,8 +121,8 @@
                 <p class="postmetadata left">
                     Keywords:&nbsp;<span itemprop="keywords">Sitefinity, caching, optimizations</span>
                 </p>
-               <p class="postmetadata right">
-                <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index">&lt;&lt;&nbsp;&nbsp;back to overview</a>
+                <p class="postmetadata right">
+                    <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index">&lt;&lt;&nbsp;&nbsp;back to overview</a>
                 </p>
             </footer>
             <hr class="bluedivider" />
@@ -129,22 +135,22 @@
 
                 </p>
             </aside>
-                <p>
-                    <div id="disqus_thread"></div>
-                    <script type="text/javascript">
-                        var disqus_shortname = 'itstimeforanupdate';
+            <p>
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'itstimeforanupdate';
 
-                        /* * * DON'T EDIT BELOW THIS LINE * * */
-                        (function () {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-                    </script>
-                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function () {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-                </p>
+            </p>
             <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <div class="columnthird left">
                     <p>
