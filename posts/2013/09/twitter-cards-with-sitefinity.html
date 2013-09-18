@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" manifest="/cache.manifest">
+<!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta http-equiv="content-language" content="EN" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="language" content="English" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Jochem Bökkers" />
+    <meta name="email" content="jochem.bokkers@gmail.com" />
+    <meta name="rating" content="general" />
+    <meta name="description" content="A quick and dirty way to use Twitter Cards with Sitefinity" />
+    <meta name="keywords" content="sitefinity, Twitter, Twitter Cards, widget, sitefinity news, sitefinity blogpost" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jbokkers">
+    <meta name="twitter:creator" content="@jbokkers">
+    <meta property="og:url" content="http://jbokkers.github.io/posts/2013/09/twitter-cards-with-sitefinity.html">
+    <meta property="og:title" content="Twitter Cards for Sitefinity how to">
+    <meta property="og:description" content="How to setup caching and compression with Sitefinity and IIS 7.">
+    <meta property="og:image" content="http://jbokkers.github.io/posts/2013/04/cache-optimized-yslow-graph-sitefinity.png">
+    <title>Twitter Cards for Sitefinity the quick way - a blogpost by Jochem Bökkers</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="/stylesheets/styles.min.css" rel="stylesheet" />
+    <script src="/javascripts/modernizr-2.6.2.min.js" async="async" defer="defer"></script>
+</head>
+<body>
+    <div id="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
+        <div id="headerwrapper" role="heading">
+            <div id="headerlogo" role="banner">
+                <a href="/" style="color: #ffffff;" title="Return to the Blog overview" role="link" rel="index">
+                    <img src="/images/logo.jpg" alt="Click the logo to return to index of the blog" role="img" width="200" height="140" />
+                </a>
+            </div>
+        </div>
+        <article id="contentwrapper">
+            <hgroup id="blogposttheader" role="contentinfo">
+                <h1 itemprop="name">Twitter Cards with Sitefinity news and blogposts</h1>
+            </hgroup>
+            <hr class="bluedivider" />
+            <header class="blogpostmeta">
+                <p class="postmetadata left">
+                    Published on&nbsp;<span itemprop="datePublished">2013-09-18</span>&nbsp;by&nbsp;<span itemprop="creator">Jochem Bökkers</span>
+                </p>
+                <p class="postmetadata right">
+                    <a href="/" class="backlink" title="Return to the Blog overview" role="link" rel="index">&lt;&lt;&nbsp;&nbsp;back to overview</a>
+                </p>
+            </header>
+            <hr class="bluedivider" />
+            <section class="blogpostitem" itemprop="articleBody">
+                <!-- blogpost start -->
+                <p>
+                    Twitter recently introduced the notion of 'Twitter Cards'. 
+					In a nutshell, it's an enhanced (and automated) way for any link that is shared on Twitter to show a preview snippet instead of an url.
+                </p>
+                <br />
+                <p>
+                    Both the desktop/web and mobile (iOS/Andriod) apps benefit from this service and instead of a simple t.co link, users will see something similar to:
+                </p>
+                <figure>
+                    <img src="twitter-cards-web.png" alt="Twitter Cards sample web snippet" width="210px" />
+                    <figcaption>Fig: Twitter Card sample for the web</figcaption>
+                </figure>
+                <figure>
+                    <img src="twitter-cards-mobile.png" alt="Twitter Cards sample iOS snippet" width="130px" />
+                    <figcaption>Fig: Twitter Card sample for iOS</figcaption>
+                </figure>
+                <p>
+                    Nice no? Perfect for our Sitefinity news items and blog posts. While we could go fancy and probably inherit some type and incorporate it according to best practices, I'm going for the lazy approach today.
+                </p>
+                <br />
+                <p>
+                    Extending classes, or building a template with a code behind and tieing that to our widgets are simply not worth the time for something so easy.
+                </p>
+                <br />
+                <p>
+                    <h2>First extend news with an image field.</h2>
+                    In the backend choose Content >> News and in the new screen click bottom right on 'Custom Fields for News Items'.                
+                </p>
+                <br />
+                <p>
+                    When we click add field, we give it the name 'Image'. 
+					Set the 'Interface widget for entering data' to custom and for the 'Type or Virtual path of the custom widget' we chose <code>Telerik.Sitefinity.Web.UI.Fields.ImageField</code>
+                </p>
+                <figure>
+                    <img src="sitefinity-custom-image-field.png" alt="Sitefinity Custom Field screenshot" width="310px" />
+                    <figcaption>Fig: Sitefinity - Adding a custom Field</figcaption>
+                </figure>
+                <p>
+                    Next, we have to repeat that step for blogposts. 
+					Remember to be lazy ;) and use the same fieldname so we don't have to tweak our individual templates.
+                </p>
+                <br />
+                <p>
+                    <h2>Next stop: Detail templates.</h2>
+                    In the backend choose Design >> Widget templates and in the overview screen look for the widget applied to 'news-single' and click on its title.
+                </p>
+                <br />
+                <p>
+                    Just before the closing <code>&lt;/ItemTemplate&gt;</code> we insert 3 <code>&lt;input type=&quot;hidden&quot; /&gt;</code> tags, one for each of our necessary fields.
+                </p>
+                <br />
+                <script src="https://gist.github.com/jbokkers/6615732.js""></script>
+                <br />
+                <p>
+                    Next directly below the closing <code>&lt;/telerik:RadListView&gt;</code> we add a bit of Javascript.
+                </p>
+                <br />
+                <script src="https://gist.github.com/jbokkers/6615765.js"></script>
+                <br />
+                <p>
+                    That's all. Just save and repeat the step for our 'blog item - single' template and we're done.
+                </p>
+                <br />
+                <p>
+                    Go to <a href="https://dev.twitter.com/docs/cards/validation/validator" title="Browse to the Twitter Cards Validator" rel="bookmark" itemprop="mentions">Twitter Cards Validator</a> to test out your page and happy sharing!
+                </p>
+                <br />
+                <!-- blogpost end -->
+            </section>
+            <hr class="bluedivider" />
+            <footer class="blogpostmeta">
+                <p class="postmetadata left">
+                    Keywords:&nbsp;<span itemprop="keywords">Sitefinity, Twitter Cards</span>
+                </p>
+                <p class="postmetadata right">
+                    <a href="/" class="backlink" title="Return to the Blog overview" alt="Return to the Blog index" role="link" rel="index">&lt;&lt;&nbsp;&nbsp;back to overview</a>
+                </p>
+            </footer>
+            <hr class="bluedivider" />
+        </article>
+        <footer id="footerwrapper">
+            <aside class="calltoaction">
+                <p>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="jbokkers">Tweet</a>&nbsp;                       
+                    <g:plusone size="medium"></g:plusone>
+
+                </p>
+            </aside>
+            <p>
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'itstimeforanupdate';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function () {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            </p>
+            <section class="outtro" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <div class="columnthird left">
+                    <p>
+                        <br />
+                        <br />
+                        <br />
+                        All information is without warranty.
+                    </p>
+                </div>
+                <div class="columnthird left">
+                    <p>
+                        <h4 itemprop="name">Jochem Bökkers</h4>
+                        <br />
+                        <br />
+                        <span itemprop="description">Independent software consultant focusing on Telerik's Sitefinity CMS</span><br />
+                    </p>
+                </div>
+                <div class="columnthird left">
+                    <a itemprop="url" href="http://plus.google.com/108089516959103859088" style="color: #ffffff;" rel="author" target="_blank">
+                        <img itemprop="image" src="/images/jbokkers_profile.jpg" alt="Get in touch" title="Get in touch" width="64" height="64" role="img" />
+                    </a>
+                    <a itemprop="award" href="http://www.telerik.com/community/client-profile.aspx?cId=162662" style="color: #ffffff;" rel="me" target="_blank">
+                        <img src="/images/telerik_mvp.jpg" alt="Telerik Most Valuable Professional" title="Telerik Most Valuable Professional" width="64" height="64" role="img" />
+                    </a>
+                    <a itemprop="affiliation" href="http://plus.google.com/113070414208675210763" rel="publisher" style="text-decoration: none;" target="_blank">
+                        <img src="/images/gplus-64.png" alt="Google+" title="Find us on Google+" width="64" height="64" role="img" />
+                    </a>
+                </div>
+
+            </section>
+        </footer>
+    </div>
+    <script src="/javascripts/jquery-1.9.1.min.js" async="async" defer="defer"></script>
+    <script type="text/javascript" defer="defer">!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    <script type="text/javascript" defer="defer">
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-16814216-2', 'github.io');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
