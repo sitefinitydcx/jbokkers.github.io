@@ -1,7 +1,7 @@
 CACHE MANIFEST
 
-/javascripts/modernizr-2.6.2.min.js
-/javascripts/jquery-1.9.1.min.js
+/javascripts/jquery-2.0.3.min.js
+/javascripts/script.bottom.min.js
 /images/logo.jpg
 
 FALLBACK:
@@ -12,5 +12,3 @@ NETWORK:
 
 CACHE:
 /images/jbokkers_profile.jpg
-/images/telerik_mvp.jpg
-/images/gplus-64.png
